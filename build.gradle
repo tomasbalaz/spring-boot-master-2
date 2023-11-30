@@ -16,7 +16,13 @@ repositories {
 }
 
 dependencies {
-    implementation 'org.springframework.boot:spring-boot-starter-web'
+    implementation "org.springframework.boot:spring-boot-starter-undertow"
+    implementation "org.springframework.boot:spring-boot-starter-webflux"
+    modules {
+        module("org.springframework.boot:spring-boot-starter-reactor-netty") {
+            replacedBy("org.springframework.boot:spring-boot-starter-undertow", "Use Undertow instead of Reactor Netty")
+        }
+    }
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
 }
 
