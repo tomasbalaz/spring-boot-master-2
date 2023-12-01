@@ -5,12 +5,10 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 public class CustomerController {
+    private final CustomerService customerService;
 
-   // private final CustomerService customerService = new CustomerService();
-    private CustomerService customerService;
-
-    public CustomerController() {
-        this.customerService = new CustomerService();
+    public CustomerController(CustomerService customerService) {
+        this.customerService = customerService;
     }
 
     @GetMapping
