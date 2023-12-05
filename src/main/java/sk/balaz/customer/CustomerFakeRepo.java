@@ -1,10 +1,7 @@
 package sk.balaz.customer;
 
-import org.springframework.stereotype.Repository;
-
 import java.util.List;
 
-@Repository(value = "fake")
 public class CustomerFakeRepo implements CustomerRepo {
     @Override
     public List<Customer> getCustomers() {
