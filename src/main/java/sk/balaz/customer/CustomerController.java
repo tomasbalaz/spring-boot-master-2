@@ -1,7 +1,6 @@
 package sk.balaz.customer;
 
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -16,5 +15,22 @@ public class CustomerController {
     @GetMapping
     public List<Customer> getCustomer() {
         return customerService.getCustomers();
+    }
+
+    @PostMapping
+    public void createCustomer(@RequestBody Customer customer) {
+        System.out.println("POST REQUEST...");
+        System.out.println(customer);
+    }
+
+    @PutMapping
+    public void updateCustomer(@RequestBody Customer customer) {
+        System.out.println("UPDATE REQUEST...");
+        System.out.println(customer);
+    }
+
+    @DeleteMapping("{customerId}")
+    public void deleteCustomer(@PathVariable("customerId") Long id) {
+        System.out.println("DELETE REQUEST FOR CUSTOMER WITH ID " + id);
     }
 }
