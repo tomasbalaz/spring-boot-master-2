@@ -5,18 +5,19 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("api/v1/customer")
-@Deprecated
-public class CustomerController {
+@RequestMapping("api/v2/customer")
+public class CustomerControllerV2 {
     private final CustomerService customerService;
 
-    public CustomerController(CustomerService customerService) {
+    public CustomerControllerV2(CustomerService customerService) {
         this.customerService = customerService;
     }
 
     @GetMapping
     public List<Customer> getCustomer() {
-        return customerService.getCustomers();
+        return List.of(
+                new Customer(0L, "v2", "v2")
+        );
     }
 
     @PostMapping
