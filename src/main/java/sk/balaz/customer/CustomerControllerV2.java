@@ -5,7 +5,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("api/v2/customer")
+@RequestMapping("api/v2/customers")
 public class CustomerControllerV2 {
     private final CustomerService customerService;
 
@@ -19,6 +19,11 @@ public class CustomerControllerV2 {
                 new Customer(0L, "v2", "v2")
         );
     }
+    @GetMapping("{customerId}")
+    public Customer getCustomer(@PathVariable("customerId") Long id) {
+        return customerService.getCustomer(id);
+    }
+
 
     @PostMapping
     public void createCustomer(@RequestBody Customer customer) {

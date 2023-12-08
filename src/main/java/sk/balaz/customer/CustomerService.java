@@ -16,4 +16,12 @@ public class CustomerService {
     public List<Customer> getCustomers() {
         return customerRepo.getCustomers();
     }
+
+    public Customer getCustomer(Long id) {
+        return customerRepo.getCustomers()
+                .stream()
+                .filter(customer -> customer.id() == id)
+                .findFirst()
+                .orElseThrow(() -> new IllegalStateException(String.format("Customer with id [%s] not found",id)));
+    }
 }
