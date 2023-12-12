@@ -1,5 +1,6 @@
 package sk.balaz.customer;
 
+import jakarta.validation.Valid;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -16,7 +17,7 @@ public class CustomerControllerV2 {
     @GetMapping
     public List<Customer> getCustomer() {
         return List.of(
-                new Customer(0L, "v2", "v2")
+                new Customer(0L, "v2", "v2", "email@email.com")
         );
     }
     @GetMapping("{customerId}")
@@ -26,7 +27,7 @@ public class CustomerControllerV2 {
 
 
     @PostMapping
-    public void createCustomer(@RequestBody Customer customer) {
+    public void createCustomer(@Valid @RequestBody Customer customer) {
         System.out.println("POST REQUEST...");
         System.out.println(customer);
     }
