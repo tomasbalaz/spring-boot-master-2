@@ -1,6 +1,7 @@
 package sk.balaz.customer;
 
 import org.springframework.stereotype.Service;
+import sk.balaz.exception.NotFoundException;
 
 import java.util.List;
 
@@ -22,6 +23,6 @@ public class CustomerService {
                 .stream()
                 .filter(customer -> customer.id() == id)
                 .findFirst()
-                .orElseThrow(() -> new IllegalStateException(String.format("Customer with id [%s] not found",id)));
+                .orElseThrow(() -> new NotFoundException(String.format("Customer with id [%s] not found",id)));
     }
 }
