@@ -8,21 +8,19 @@ import java.util.List;
 @Service
 public class CustomerService {
 
-    private final CustomerRepo customerRepo;
+    private final CustomerRepository customerRepository;
 
-    public CustomerService(CustomerRepo customerRepo) {
-        this.customerRepo = customerRepo;
+    public CustomerService(CustomerRepository customerRepository) {
+        this.customerRepository = customerRepository;
     }
 
     public List<Customer> getCustomers() {
-        return customerRepo.getCustomers();
+        return customerRepository.findAll();
     }
 
     public Customer getCustomer(Long id) {
-        return customerRepo.getCustomers()
-                .stream()
-                .filter(customer -> customer.id() == id)
-                .findFirst()
+        return customerRepository
+                .findById(id)
                 .orElseThrow(() -> new NotFoundException(String.format("Customer with id [%s] not found",id)));
     }
 }

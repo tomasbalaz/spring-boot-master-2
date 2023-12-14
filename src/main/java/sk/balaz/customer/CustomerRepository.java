@@ -1,12 +1,6 @@
 package sk.balaz.customer;
 
-import java.util.Collections;
-import java.util.List;
+import org.springframework.data.jpa.repository.JpaRepository;
 
-public class CustomerRepository implements CustomerRepo {
-    @Override
-    public List<Customer> getCustomers() {
-        //TODO connect to real DB
-        return Collections.emptyList();
-    }
+public interface CustomerRepository extends JpaRepository<Customer, Long> {
 }
