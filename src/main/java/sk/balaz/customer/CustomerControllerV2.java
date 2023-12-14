@@ -2,6 +2,7 @@ package sk.balaz.customer;
 
 import jakarta.validation.Valid;
 import org.springframework.web.bind.annotation.*;
+import sk.balaz.exception.ApiRequestException;
 
 import java.util.List;
 
@@ -41,5 +42,12 @@ public class CustomerControllerV2 {
     @DeleteMapping("{customerId}")
     public void deleteCustomer(@PathVariable("customerId") Long id) {
         System.out.println("DELETE REQUEST FOR CUSTOMER WITH ID " + id);
+    }
+
+    @GetMapping(path = "{customerId}/exception")
+    Customer getCustomerException(@PathVariable("customerId") Long id) {
+        throw new ApiRequestException(
+                "ApiRequestException for id : " + id
+        );
     }
 }
