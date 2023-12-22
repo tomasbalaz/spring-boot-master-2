@@ -1,4 +1,16 @@
 //: intellij program arguments --spring.profiles.active=dev
+#    ./mvnw clean install
+
+#    ./gradlew build
+#    ./gradlew clean
+#    ./gradlew test
+#    result of the tests - build/reports/tests/test/index.html
+
+#    java -jar spring-boot-master-0.0.1-SNAPSHOT.jar
+#
+#    java -jar spring-boot-master-0.0.1-SNAPSHOT.jar --spring.profiles.active=dev
+#
+#    java -jar spring-boot-master-0.0.1-SNAPSHOT.jar --spring.profiles.active=dev --server.port=3000
 info:
     app:
         description: 'Spring boot master '
