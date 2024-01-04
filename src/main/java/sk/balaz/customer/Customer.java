@@ -7,12 +7,18 @@ import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
+import lombok.AllArgsConstructor;
+import lombok.NoArgsConstructor;
+import lombok.ToString;
 
 // Jackson Fasterxml annotations
 // https://www.geeksforgeeks.org/jackson-annotations-for-java-application/
 
 @Entity
 @Table
+@AllArgsConstructor
+@NoArgsConstructor
+@ToString
 public class Customer {
 
         @Id
@@ -28,16 +34,6 @@ public class Customer {
         @NotBlank(message = "email must be not empty")
         @Email
         private String email;
-
-        public Customer() {
-        }
-
-        public Customer(Long id, String name, String password, String email) {
-                this.id = id;
-                this.name = name;
-                this.password = password;
-                this.email = email;
-        }
 
         @JsonProperty("customer_id")
         public Long getId() {
@@ -55,15 +51,5 @@ public class Customer {
 
         public String getEmail() {
                 return email;
-        }
-
-        @Override
-        public String toString() {
-                return "Customer{" +
-                        "id=" + id +
-                        ", name='" + name + '\'' +
-                        ", password='" + password + '\'' +
-                        ", email='" + email + '\'' +
-                        '}';
         }
 }

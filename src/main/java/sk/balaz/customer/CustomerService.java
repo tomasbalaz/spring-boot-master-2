@@ -1,22 +1,18 @@
 package sk.balaz.customer;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import sk.balaz.exception.NotFoundException;
 
 import java.util.List;
 
 @Service
+@RequiredArgsConstructor
+@Slf4j
 public class CustomerService {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger(CustomerService.class);
-
     private final CustomerRepository customerRepository;
-
-    public CustomerService(CustomerRepository customerRepository) {
-        this.customerRepository = customerRepository;
-    }
 
     public List<Customer> getCustomers() {
         return customerRepository.findAll();
@@ -29,9 +25,9 @@ public class CustomerService {
                     NotFoundException notFoundException = new NotFoundException(
                             "customer with id '" + id + "' not found");
 
-                    LOGGER.error(notFoundException.toString());
-                    LOGGER.error("error in getCustomer {}", id);
-                    LOGGER.error("error in getCustomer {}", id, notFoundException);
+                    log.error(notFoundException.toString());
+                    log.error("error in getCustomer {}", id);
+                    log.error("error in getCustomer {}", id, notFoundException);
 
                     return notFoundException;
                 });

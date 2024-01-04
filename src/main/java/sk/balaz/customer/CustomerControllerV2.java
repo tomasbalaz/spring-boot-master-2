@@ -1,6 +1,8 @@
 package sk.balaz.customer;
 
 import jakarta.validation.Valid;
+import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.*;
 import sk.balaz.exception.ApiRequestException;
 
@@ -8,12 +10,11 @@ import java.util.List;
 
 @RestController
 @RequestMapping("api/v2/customers")
+@RequiredArgsConstructor
+@Slf4j
 public class CustomerControllerV2 {
-    private final CustomerService customerService;
 
-    public CustomerControllerV2(CustomerService customerService) {
-        this.customerService = customerService;
-    }
+    private final CustomerService customerService;
 
     @GetMapping
     public List<Customer> getCustomer() {
@@ -29,19 +30,17 @@ public class CustomerControllerV2 {
 
     @PostMapping
     public void createCustomer(@Valid @RequestBody Customer customer) {
-        System.out.println("POST REQUEST...");
-        System.out.println(customer);
+        log.info("POST REQUEST...");
     }
 
     @PutMapping
     public void updateCustomer(@RequestBody Customer customer) {
-        System.out.println("UPDATE REQUEST...");
-        System.out.println(customer);
+        log.info("UPDATE REQUEST...");
     }
 
     @DeleteMapping("{customerId}")
     public void deleteCustomer(@PathVariable("customerId") Long id) {
-        System.out.println("DELETE REQUEST FOR CUSTOMER WITH ID " + id);
+        log.info("DELETE REQUEST FOR CUSTOMER WITH ID " + id);
     }
 
     @GetMapping(path = "{customerId}/exception")
